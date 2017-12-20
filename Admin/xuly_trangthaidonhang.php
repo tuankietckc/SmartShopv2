@@ -11,12 +11,7 @@
 	$trangthai = $_GET["trangthai"];
 	var_dump($mahoadon);
 	var_dump($trangthai);
-	$sqlsuatrangthai = "";
-	if($trangthai == "0")
-		$sqlsuatrangthai = "UPDATE hoadon SET trangthai = 1 WHERE MaHoaDon = '$mahoadon'";
-	else
-		$sqlsuatrangthai = "UPDATE hoadon SET trangthai = 0 WHERE MaHoaDon = '$mahoadon'";
-
+	$sqlsuatrangthai = "UPDATE hoadon SET trangthai = 0 WHERE MaHoaDon = '$mahoadon'";
 	if($conn->query($sqlsuatrangthai)){
 		echo "<script>alert(\"Cập nhật trạng thái thành công\"); 
 					window.location.href = 'danhsachdonhang.php';

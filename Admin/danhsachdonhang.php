@@ -14,6 +14,7 @@
                     <th style="text-align: center;">Địa chỉ giao hàng</th>
                     <th style="text-align: center;">Ngày lập hóa đơn</th>
                     <th style="text-align: center;">trạng thái</th>
+                    <th style="text-align: center;">Chi tiết</th>
                     <th style="text-align: center;">Xử lý</th>
                 </tr>
             </thead>
@@ -36,10 +37,11 @@
                     ?>    
                         <td><?= $trangthai ?></td>
                     <?php 
-                        $url = "xuly_trangthaidonhang.php?mahoadon=" .$row["MaHoaDon"]."&trangthai=".$row["trangthai"];
-                        
+                        $urlUpdate = "xuly_trangthaidonhang.php?mahoadon=" .$row["MaHoaDon"]."&trangthai=".$row["trangthai"];
+                        $urlDetail = "chitietdonhang.php?mahoadon=" .$row["MaHoaDon"];
                     ?> 
-                        <td><a href="<?= $url ?>" ID="btnSuaSPLink" CssClass="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit"></span></a></td>
+                        <td><a href="<?= $urlDetail ?>" ID="btnSuaSPLink" CssClass="btn btn-success btn-xs"><span class="glyphicon glyphicon-open"></span></a></td>
+                        <td><a href="<?= $urlUpdate ?>" ID="btnSuaSPLink" CssClass="btn btn-success btn-xs"><span class="glyphicon glyphicon-check"></span></a></td>
                     </tr>
                 <?php
                         }

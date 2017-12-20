@@ -46,16 +46,7 @@
 					$_SESSION["giohang"] = null;
 					echo 'Thêm hóa đơn thành công';
 				}
-
-			
-
-
 			}
-
-
-
-
-
 	?>
 </body>
 </html>

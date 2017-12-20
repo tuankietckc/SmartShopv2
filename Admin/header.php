@@ -59,7 +59,20 @@
                                             </div>
                                         </div>
                                     </li>
+                                    <li class="panel panel-default" id="dropdown">
+                                        <a data-toggle="collapse" href="#dropdown-lvl1donhang">
+                                            <span class="glyphicon glyphicon-user"></span>Đơn hàng<span class="caret"></span>
+                                        </a>
 
+                                        <!-- Dropdown level 1 -->
+                                        <div id="dropdown-lvl1donhang" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <ul class="nav navbar-nav">   
+                                                    <li><a href="danhsachdonhang.php">Danh sách Đơn hàng</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
                                     <!-- Dropdown-->
                                     <li class="panel panel-default" id="dropdown">
                                         <a data-toggle="collapse" href="#dropdown-lvl1sanpham">

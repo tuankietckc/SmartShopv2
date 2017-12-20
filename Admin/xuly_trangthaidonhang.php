@@ -2,24 +2,24 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Xử lý trạng thái tài khoản</title>
+	<title>Xử lý trạng thái Hóa đơn</title>
 </head>
 <body>
 	<?php 
 	include '../config.php';
-	$taikhoan = $_GET["tentaikhoan"];
+	$mahoadon = $_GET["mahoadon"];
 	$trangthai = $_GET["trangthai"];
-	var_dump($taikhoan);
+	var_dump($mahoadon);
 	var_dump($trangthai);
 	$sqlsuatrangthai = "";
 	if($trangthai == "0")
-		$sqlsuatrangthai = "UPDATE nguoidung SET TrangThai = 1 WHERE TenTaiKhoan = '$taikhoan'";
+		$sqlsuatrangthai = "UPDATE hoadon SET trangthai = 1 WHERE MaHoaDon = '$mahoadon'";
 	else
-		$sqlsuatrangthai = "UPDATE nguoidung SET TrangThai = 0 WHERE TenTaiKhoan = '$taikhoan'";
+		$sqlsuatrangthai = "UPDATE hoadon SET trangthai = 0 WHERE MaHoaDon = '$mahoadon'";
 
 	if($conn->query($sqlsuatrangthai)){
 		echo "<script>alert(\"Cập nhật trạng thái thành công\"); 
-					window.location.href = 'listaccount.php';
+					window.location.href = 'danhsachdonhang.php';
 				</script>";
 	}
 	else

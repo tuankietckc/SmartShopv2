@@ -3,8 +3,28 @@
 	<?php include 'stylepage.php' ?>
 	<?php include 'config.php' ?>
 	<?php 
-		$sqldanhsachsp = "SELECT * FROM sanpham WHERE trangthaisanpham = 1";
-		$ketquadanhsachsp = $conn->query($sqldanhsachsp); 
+
+		$record_per_page = 2; // Số dòng trên 1 trang
+		$current_page = 1; // Trang hiện tại
+		if(isset($_REQUEST['p'])){
+			$current_page = $_REQUEST['p'];
+		}
+		// Lấy tổng số dòng
+		$sql = "SELECT * FROM sanpham WHERE trangthaisanpham = 1";
+		$result = $conn->query($sql);
+		$total_record = $result->num_rows;
+		$num_pages = $total_record / $record_per_page; // Tổng số trang
+		if($total_record % $record_per_page > 0){
+			$num_pages++;
+		}
+		//================================================
+		// Lấy các dòng dữ liệu của trang hiện tại
+		$offset = ($current_page-1)*$record_per_page;
+		$sql1 = "SELECT * FROM sanpham WHERE trangthaisanpham = 1 LIMIT $offset, $record_per_page";
+		$result = $conn->query($sql1);
+
+		/*$sqldanhsachsp = "SELECT * FROM sanpham WHERE trangthaisanpham = 1";
+		$ketquadanhsachsp = $conn->query($sqldanhsachsp);*/ 
 	?>
 
 <body>
@@ -72,8 +92,9 @@
 				<div class="resp-tabs-container">
 					<h2 class="resp-accordion resp-tab-active" role="tab" aria-controls="tab_item-0"><span class="resp-arrow"></span>Latest Designs</h2><div class="tab-1 resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-0" style="display:block">	
 						<?php 
-							if($ketquadanhsachsp->num_rows > 0){
-								while($row = $ketquadanhsachsp->fetch_assoc()){
+						
+							if($result->num_rows > 0){
+								while($row = $result->fetch_assoc()){
 						?>
 						<div class="col-md-3 product-men yes-marg">		
 							<div class="men-pro-item simpleCart_shelfItem">
@@ -99,8 +120,10 @@
 						</div>
 						
 						<?php
+
 								}
 							}
+							$conn->close();
 						?>
 
 					</div>	
@@ -109,8 +132,21 @@
 		</div>
 	</div>
 	</div>
+	<center><?php 
+	for($i=1; $i<=$num_pages; $i++){
+								if($i == $current_page){
+									echo $i;
+								} else {
+									?>
+									<a href="index.php?p=<?=$i?>"><?=$i?></a>
+									<?php
+								}
+							}
+?></center>
 	</div>
+
 </div>
+
 <?php include 'footer.php' ?>
 </body>
 </html>

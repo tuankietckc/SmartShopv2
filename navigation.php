@@ -1,3 +1,8 @@
+<?php 
+	include 'config.php';
+	$sql_layLoaiSP1 = "Select * from LoaiSanPham";
+    $LSP1 = $conn->query($sql_layLoaiSP1);
+?>
 <!-- header -->
 <div class="header">
 	<div class="container">
@@ -16,23 +21,29 @@
 			<h1><a href="index.php"><img src="images/logo3.jpg"></a></h1>
 		</div>
 		<div class="col-md-6 header-middle">
-			<form>
+			<form method="GET" action="search.php">
 				<div class="search">
-					<input type="search" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" required="">
+					<input type="search" placeholder="Search" required="" name="tensp">
 				</div>
 				<div class="section_room">
-					<select id="country" onchange="change_country(this.value)" class="frm-field required">
-					
-						<option value="null">Electronics</option>     
-						<option value="AX">kids Wear</option>
-						<option value="AX">Men's Wear</option>
-						<option value="AX">Women's Wear</option>
-						<option value="AX">Watches</option>
+				
+					<select id="country" onchange="change_country(this.value)" class="frm-field required" name="loai">
+						<?php 
+							if($LSP1->num_rows > 0){
+						        while($BangLoaiSP = $LSP1->fetch_assoc()){
+						?>
+						<option value="<?= $BangLoaiSP["MaLoaiSanPham"] ?>"><?= $BangLoaiSP["TenLoaisanpham"] ?></option>     
+						<?php
+								}
+							}
+						?>
 					</select>
+
 				</div>
 				<div class="sear-sub">
 					<input type="submit" value=" ">
 				</div>
+				</form>
 				<div class="clearfix"></div>
 			</form>
 		</div>

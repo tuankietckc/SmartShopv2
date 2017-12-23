@@ -9,7 +9,7 @@
 <?php include '../config.php' ?>
     <?php 
     $mahoadon = $_GET["mahoadon"];
-        $sqldanhsachsp = "SELECT * FROM sanpham,hoadon,chitiethoadon WHERE hoadon.MaHoaDon = chitiethoadon.MaHoaDon AND sanpham.masanpham = chitiethoadon.MaHoaDon  AND hoadon.MaHoaDon = '$mahoadon'";
+        $sqldanhsachsp = "SELECT * FROM sanpham,hoadon,chitiethoadon WHERE hoadon.MaHoaDon = chitiethoadon.MaHoaDon AND sanpham.masanpham = chitiethoadon.masanpham AND hoadon.MaHoaDon = '$mahoadon'";
         $ketquadanhsachsp = $conn->query($sqldanhsachsp);
     ?>
 <div class="container-fluid">
@@ -25,6 +25,7 @@
                 </thead>
             <tbody>
     <?php 
+        
         if($ketquadanhsachsp->num_rows > 0){
             while($row = $ketquadanhsachsp->fetch_assoc()){
     ?>                    

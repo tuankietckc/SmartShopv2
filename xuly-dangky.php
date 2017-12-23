@@ -7,9 +7,9 @@
 <body>
 	<?php 
 		include 'config.php';
-		if($_SESSION["TenKhachHang"] != null)
+		/*if(!isset($_SESSION["TenKhachHang"]))
 			header('Location: localhost/smartshop/');
-		else if($_POST['txttaikhoan'] =="" || $_POST['txtmatkhau'] =='' || $_POST['txthoten'] ==''|| $_POST['txtemail'] ==''){
+		else*/ if($_POST['txttaikhoan'] =="" || $_POST['txtmatkhau'] =='' || $_POST['txthoten'] ==''|| $_POST['txtemail'] ==''){
 			echo "<script>alert(\"Đăng ký thất bại\"); 
 					window.location.href = 'login-register.php';
 				</script>";
@@ -31,9 +31,7 @@
 				</script>";
 				
 			}
-			else{
-				echo "Error: ".$sql."<br>".$conn->Error;
-			}
+			
 			$conn->close();
 		}
  ?>
